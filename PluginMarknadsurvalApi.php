@@ -35,6 +35,13 @@ class PluginMarknadsurvalApi{
     $insert['status'] = $result->get('status');
     $db->marknadsurval_cupdate_insert($insert);
     /**
+     * log
+     */
+    $log = new PluginWfYml(wfGlobals::getAppDir().'/../buto_data/theme/[theme]/plugin/marknadsurval/api/'.$this->token.'/'.date('Y-m').'.yml');
+    $log->set('log/', array('time' => date('Y-m-d H:i:s'), 'pid' => wfUser::getSession()->get('plugin/banksignering/ui/pid'), 'result' => $result->get()));
+    $log->set('count', sizeof($log->get('log')));
+    $log->save();
+    /**
      * 
      */
     return $result;

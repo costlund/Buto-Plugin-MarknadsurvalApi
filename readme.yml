@@ -1,0 +1,61 @@
+readme:
+  name: Buto-Plugin-MarknadsurvalApi
+  item:
+    -
+      name: Settings
+      description: |
+        ```
+        plugin:
+          marknadsurval:
+            api:
+              settings: '/../buto_data/theme/[theme]/marknadsurval.yml'
+        ```
+        Add parameter token to file marknadsurval.yml.
+        ```
+        token: '(my token)'
+        ```
+    -
+      name: Usage
+    -
+      name: Pages
+      item: {  }
+    -
+      name: Widgets
+      item: {  }
+    -
+      name: Event
+      item: {  }
+    -
+      name: Construct
+      item:
+        -
+          name: __construct
+    -
+      name: Methods
+      item:
+        -
+          name: get_cupdate
+          description: |
+            - Maken a request with a PID.
+            - Put result in db.
+            - Log to file.
+            - Return result.
+
+            ```
+            wfPlugin::includeonce('marknadsurval/api');
+            $api = new PluginMarknadsurvalApi();
+            $temp = $api->get_cupdate(wfRequest::get('pid'));
+            wfHelp::print($temp);
+            ```
+            Returns.
+            ```
+            pid: '196707238517'
+            first_name: 'James Goofy'
+            given_name: James
+            surname: Bond
+            address: 'Highway 3'
+            zip: '12345'
+            city: London
+            moved_at: ''
+            status: ok
+            ```
