@@ -19,6 +19,16 @@ class PluginMarknadsurvalApi{
     $result = $server->get($this->url.$get, array('X_TOKEN' => $this->token));
     $result = new PluginWfArray($result);
     /**
+     * status
+     */
+    if(!$result->get('status')){
+      if($result->get('daily-quota')){
+        $result->set('status', 'daily-quota:'.$result->get('daily-quota'));
+      }else{
+        $result->set('status', 'Unknown error...');
+      }
+    }
+    /**
      * db
      */
     wfPlugin::includeonce('marknadsurval/db');

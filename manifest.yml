@@ -1,5 +1,9 @@
-version: 1.1.0
+version: 1.1.1
 history:
+  1.1.1:
+    date: '2024-05-06'
+    title: 'Status'
+    description: 'Add error data to status value if empty.'
   1.1.0:
     date: '2024-04-23'
     title: 'Log'
