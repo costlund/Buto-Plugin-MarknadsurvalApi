@@ -1,5 +1,9 @@
-version: 1.1.1
+version: 1.2.0
 history:
+  1.2.0:
+    date: '2024-06-11'
+    title: 'API name'
+    description: 'Add api_name.'
   1.1.1:
     date: '2024-05-06'
     title: 'Status'

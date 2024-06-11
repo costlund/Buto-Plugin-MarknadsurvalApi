@@ -43,6 +43,7 @@ class PluginMarknadsurvalApi{
     $insert['city'] = $result->get('city');
     $insert['moved_at'] = $result->get('moved_at');
     $insert['status'] = $result->get('status');
+    $insert['api_name'] = 'marknadsurval';
     $db->marknadsurval_cupdate_insert($insert);
     /**
      * log
@@ -51,6 +52,14 @@ class PluginMarknadsurvalApi{
     $log->set('log/', array('time' => date('Y-m-d H:i:s'), 'pid' => wfUser::getSession()->get('plugin/banksignering/ui/pid'), 'result' => $result->get()));
     $log->set('count', sizeof($log->get('log')));
     $log->save();
+    /**
+     * Check secondary API
+     */
+    if($result->get('status')!='ok'){
+      wfPlugin::includeonce('marknadsinformation/api');
+      $api = new PluginMarknadsinformationApi();
+      $api->get($pid);
+    }
     /**
      * 
      */
